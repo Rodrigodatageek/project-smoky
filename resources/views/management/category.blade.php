@@ -4,14 +4,7 @@
 
     <div class='container'>
         <div class='row justity-content-center'>
-            <div class='col-md-4'>
-                <div class='list-group'>
-                    <a class='list-group-item list-group-item-action' href="/management/category"><i class="fas fa-align-justify"></i> Category</a>
-                    <a class='list-group-item list-group-item-action' href=""><i class="fa-solid fa-bars"></i> Menu</a>
-                    <a class='list-group-item list-group-item-action' href=""><i class="fa-solid fa-hand-holding"></i> Table</a>
-                    <a class='list-group-item list-group-item-action' href=""><i class="fa-brands fa-octopus-deploy"></i> User</a>
-                </div>
-            </div>
+            @include('/management.inc.sidebar')
             <div class='col-md-8'>
                 <i class="fas fa-align-justify"></i> Category
                 <a href="category/create " class="btn btn-success btn-sm float-right"><i class="fas fa-plus"></i>Create Category</a>
@@ -41,10 +34,15 @@
                             <th scope='row'>{{$category->id}}</th>
                             <td>{{$category->name}}</td>
                             <td>
-                                <a href="" class="btn btn-warning">Edit</a>
+                                <a href="/management/category/{{$category->id}}/edit" class="btn btn-warning">Edit</a>
                             </td>
                             <td>
-                                <a href="" class="btn btn-danger">Delete</a>
+                                <form action=" /management/category/{{$category->id}} " method="post">
+                                @csrf
+                                @method('DELETE') 
+                                <input type="submit" value="Delete" class="btn btn-danger" 
+                                />
+                                </form>
                             </td>
                         </tr>
                         @endforeach
